@@ -1,5 +1,5 @@
 # burcBlog-node
-柏成的个人博客 - 后台
+本仓库是网站 http://www.burc.com.cn 的后台源码。
 
 ```
 #首先下载burcBlog-react
