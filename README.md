@@ -34,4 +34,5 @@ npm run dev
 #浏览器输入：
 http://localhost:8080/index
 ```
+
 如要详细了解项目是如何工作的，请参考 http://www.burc.com.cn
