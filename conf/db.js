@@ -24,9 +24,9 @@ if (env === 'dev') {
     MYSQL_CONF = {
         host:'localhost',
         user:'root',
-        password:'',
+        password:'592poker',
         port:'3306',
-        database:''
+        database:'blog'
     }
 
     // redis

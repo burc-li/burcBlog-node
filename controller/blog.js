@@ -2,7 +2,12 @@ const { exec } = require("../db/mysql");
 const xss = require("xss");
 
 const getTag = () => {
-    const sql = `select distinct label from blogs order by id desc`;
+    const sql = `SELECT label
+                FROM (
+                    SELECT label, ROW_NUMBER() OVER (PARTITION BY label ORDER BY id DESC) AS row_num
+                    FROM blogs
+                ) sub
+                WHERE row_num = 1`;
     return exec(sql);
 };
 
@@ -56,11 +61,12 @@ const newBlog = (blogData={}) => {
     const author = blogData.author;
     const label = blogData.label;
     const option = blogData.option;
+    const abstract = blogData.abstract;
     const content = blogData.content;
     const createdate = blogData.createdate;
     
-    const sql = `insert into blogs(title,content,label,author,createdate,commentcount,articletype)
-     values('${title}','${content}','${label}','${author}','${createdate}','0','${option}')`;
+    const sql = `insert into blogs(title,abstract,content,label,author,createdate,commentcount,articletype)
+     values('${title}','${abstract}','${content}','${label}','${author}','${createdate}','0','${option}')`;
     return exec(sql).then(insertData => {
         // console.log(insertData);
         return {
@@ -80,8 +86,9 @@ const updateBlog = (blogData={}) => {
     const author = blogData.author;
     const label = blogData.label;
     const option = blogData.option;
+    const abstract = blogData.abstract;
     const content = blogData.content;
-    const sql = `update blogs set title = '${title}', author = '${author}', label = '${label}', articletype = '${option}', content = '${content}' where id = '${id}'`;
+    const sql = `update blogs set title = '${title}', author = '${author}', label = '${label}', articletype = '${option}', abstract = '${abstract}', content = '${content}' where id = '${id}'`;
     return exec(sql).then(updateData => {
         // console.log(updateData);
         if(updateData.affectedRows > 0){

@@ -10,6 +10,7 @@ use burcblog;
  create table blogs(
  id int(10) auto_increment,
  title varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci,
+ abstract longtext CHARACTER SET utf8 COLLATE utf8_general_ci,
  content longtext CHARACTER SET utf8 COLLATE utf8_general_ci,
  label varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci,
  author varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci,
