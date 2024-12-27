@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "注释1":"线下环境",
+    "注释1": "线下环境",
     "dev": "cross-env NODE_ENV=dev nodemon ./bin/www",
-    "注释2":"线上环境",
+    "注释2": "线上环境",
     "prd": "cross-env NODE_ENV=production nodemon ./bin/www"
   },
   "dependencies": {
