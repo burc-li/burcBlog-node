@@ -24,7 +24,7 @@ if (env === 'dev') {
 if (env === 'production') {
   // mysql
   MYSQL_CONF = {
-    host: '127.0.0.1',
+    host: '192.168.1.11',
     user: 'root',
     password: '123456',
     port: '3306',
@@ -33,7 +33,7 @@ if (env === 'production') {
 
   // redis
   REDIS_CONF = {
-    host: '127.0.0.1',
+    host: '192.168.1.11',
     port: 6379,
   }
 }
