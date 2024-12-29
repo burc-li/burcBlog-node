@@ -1,11 +1,11 @@
 # burcBlog-node
 本仓库是网站 http://www.burc.com.cn 的后台源码。
 
-首先下载前端源码 [burcBlog-react](https://github.com/burc-li/burcBlog-react)，打包
+首先下载前端源码 [burcBlog-react](https://github.com/burc-li/burcBlog-react)，并打包
 
 ###  1. 准备工作
 
-`db/sql.sql` 是建表语句，需利用navicat等工具手动创建
+`db/sql.sql` 是建表语句，需利用 navicat等工具手动创建
 
 `conf/db.js` 是数据库配置，需要修改 MySQL账号密码等信息
 
