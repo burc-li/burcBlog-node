@@ -3,7 +3,7 @@ const { MYSQL_CONF } = require("../conf/db");
 
 
 // //创建连接对象
-const conn = mysql.createConnection(MYSQL_CONF);
+const conn = mysql.createPool(MYSQL_CONF);
 
 //开始连接
 conn.connect();
