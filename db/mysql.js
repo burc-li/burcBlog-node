@@ -9,20 +9,17 @@ const conn = mysql.createPool(MYSQL_CONF);
 // conn.connect();
 
 //统一执行 SQL 的函数
-function exec(sql){
-    const promise = new Promise((resolve,reject) => {
-        conn.query(sql,(err,result) => {
-            // console.log(result);
-            if(err){
-                reject(err);
-                return;
-            }
-            resolve(result);
-        });
-    });
-    return promise;
+function exec(sql, params = []) {
+  return new Promise((resolve, reject) => {
+      conn.query(sql, params, (err, result) => {
+          if (err) {
+              reject(err);
+              return;
+          }
+          resolve(result);
+      });
+  });
 }
-
 //escape是mysql原生提供的函数
 module.exports = { 
     exec,

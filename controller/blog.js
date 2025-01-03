@@ -57,17 +57,21 @@ const getDetail = (id) => {
 //ES6新语法 blogData如果没有的默认为空对象
 const newBlog = (blogData={}) => {
     //blogData是一个博客对象，包含title content属性
-    const title = blogData.title;
-    const author = blogData.author;
-    const label = blogData.label;
-    const option = blogData.option;
-    const abstract = blogData.abstract;
-    const content = blogData.content;
-    const createdate = blogData.createdate;
+    const params = [
+      blogData.title,
+      blogData.abstract,
+      blogData.content,
+      blogData.label,
+      blogData.author,
+      blogData.createdate,
+      0, // 默认评论数为 0
+      blogData.option
+  ];
     
     const sql = `insert into blogs(title,abstract,content,label,author,createdate,commentcount,articletype)
-     values('${title}','${abstract}','${content}','${label}','${author}','${createdate}','0','${option}')`;
-    return exec(sql).then(insertData => {
+     values(?, ?, ?, ?, ?, ?, ?, ?)`;
+     console.log('params', )
+    return exec(sql, params).then(insertData => {
         // console.log(insertData);
         return {
             id:insertData.insertId
@@ -81,15 +85,19 @@ const newBlog = (blogData={}) => {
 
 
 const updateBlog = (blogData={}) => {
-    const id = blogData.id;
-    const title = blogData.title;
-    const author = blogData.author;
-    const label = blogData.label;
-    const option = blogData.option;
-    const abstract = blogData.abstract;
-    const content = blogData.content;
-    const sql = `update blogs set title = '${title}', author = '${author}', label = '${label}', articletype = '${option}', abstract = '${abstract}', content = '${content}' where id = '${id}'`;
-    return exec(sql).then(updateData => {
+    const params = [
+      blogData.title || '',
+      blogData.author || '',
+      blogData.label || '',
+      blogData.option || '',
+      blogData.abstract || '',
+      blogData.content || '',
+      blogData.id
+  ];
+    const sql = `UPDATE blogs 
+                 SET title = ?, author = ?, label = ?, articletype = ?, abstract = ?, content = ? 
+                 WHERE id = ?`;
+    return exec(sql, params).then(updateData => {
         // console.log(updateData);
         if(updateData.affectedRows > 0){
             return true;
