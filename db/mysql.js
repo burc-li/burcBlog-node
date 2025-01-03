@@ -6,7 +6,7 @@ const { MYSQL_CONF } = require("../conf/db");
 const conn = mysql.createPool(MYSQL_CONF);
 
 //开始连接
-conn.connect();
+// conn.connect();
 
 //统一执行 SQL 的函数
 function exec(sql){
