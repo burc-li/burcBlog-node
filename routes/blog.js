@@ -78,8 +78,12 @@ router.post('/article', function(req, res, next) {
     const result = getArticle(articletype,keyword,currentPage,pageSize);
     return result.then(articleData => {
         //必须用listData[0]，即listData中的第一个对象
-        if(articleData[0])
-            res.json( new SuccessModel(articleData) );
+        if(articleData[0]){
+          articleData.forEach(item => {
+            item.content = ''
+          })
+          res.json( new SuccessModel(articleData) );
+        }
         else
             res.json( new ErrorModel('未找到') );
     }); 
