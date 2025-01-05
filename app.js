@@ -12,6 +12,8 @@ var logger = require('morgan');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 
+const bodyParser = require('body-parser');
+
 // 引入两个路由
 const blogRouter = require('./routes/blog');
 const userRouter = require('./routes/user');
@@ -19,6 +21,9 @@ const commentRouter = require('./routes/comment');
 
 // 本次http请求的实例，每次请求都会产生一个新的app实例
 var app = express();
+
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 // view engine setup 视图引擎设置 若前后端分离，可删掉
 app.set('views', path.join(__dirname, 'views'));
