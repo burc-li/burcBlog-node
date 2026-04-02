@@ -79,9 +79,6 @@ router.post('/article', function(req, res, next) {
     return result.then(articleData => {
         //必须用listData[0]，即listData中的第一个对象
         if(articleData[0]){
-          articleData.forEach(item => {
-            item.content = ''
-          })
           res.json( new SuccessModel(articleData) );
         }
         else

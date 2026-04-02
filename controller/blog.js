@@ -37,7 +37,8 @@ const getLine = () => {
 const getArticle = (articletype,keyword,currentPage,pageSize) => {
    const key = xss(keyword);
    const start = (currentPage-1) * pageSize;
-   let sql = `select * from blogs where 1=1 `;
+   // 列表页不需要 content，大字段会拖慢查询和网络传输
+   let sql = `select id,title,abstract,label,author,createdate,commentcount,articletype from blogs where 1=1 `;
    if(articletype)
         sql += `and articletype = '${articletype}' `;
     if(key)
